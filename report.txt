@@ -1,0 +1,12 @@
+DLT Log Analysis Report
+=======================
+
+Log Summary:
+Summary of errors and warnings:
+      2 WARN
+      2 ERROR
+
+Specific Events:
+Tracking specific events:
+[2024-04-06 08:15:32] INFO System Startup Sequence Initiated
+[2024-04-06 08:20:00] INFO System health check OK
