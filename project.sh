@@ -1,35 +1,35 @@
 #!/usr/bin/bash -i
 
-# Source the configuration file
+# Source configuration file
 source ./process_monitor.conf
 
-# Function to list all running processes
+#ist all running processes
 list_all_processes() {
     echo "Listing all running processes:"
     ps -eo pid,ppid,uid,cmd,%mem,%cpu --sort=-%mem | head -n 20
 }
 
-# Function to get detailed information about a specific process
+# detailed information about a specific process
 process_info() {
     read -p "Enter the PID of the process: " pid
     ps -p $pid -o pid,ppid,uid,user,cmd,%mem,%cpu,etime
 }
 
-# Function to kill a specific process
+# kill a specific process
 kill_process() {
     read -p "Enter the PID of the process to kill: " pid
     kill -9 $pid
     echo "Process $pid has been killed."
 }
 
-# Function to display system process statistics
+# display system process statistics
 process_statistics() {
     echo "Total number of processes: $(ps -e | wc -l)"
     echo "Memory usage: $(free -m | grep Mem | awk '{print $3 "MB / " $2 "MB"}')"
     echo "CPU load: $(uptime | awk -F 'load average: ' '{print $2}')"
 }
 
-# Function to implement real-time monitoring
+# implement real-time monitoring
 real_time_monitoring() {
     while true; do
         clear
@@ -38,13 +38,13 @@ real_time_monitoring() {
     done
 }
 
-# Function to search for processes
+# search for processes
 search_processes() {
     read -p "Enter the search term (name/user/resource usage): " term
     ps -eo pid,ppid,uid,user,cmd,%mem,%cpu --sort=-%mem | grep $term
 }
 
-# Function to handle resource usage alerts
+# handle resource usage alerts
 resource_usage_alerts() {
     while true; do
         high_cpu=$(ps -eo pid,cmd,%cpu --sort=-%cpu | awk -v threshold=$CPU_ALERT_THRESHOLD '$3 > threshold {print $1, $2, $3}')
@@ -64,7 +64,7 @@ resource_usage_alerts() {
     done
 }
 
-# Function to display the interactive menu
+# display the interactive menu
 interactive_menu() {
     while true; do
         echo "Process Monitor Menu:"
